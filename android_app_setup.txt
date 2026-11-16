@@ -1,0 +1,27 @@
+ANDROID CONFIGURATION
+=====================
+This source package intentionally keeps Flutter's generated Gradle wrapper/platform
+boilerplate out of the archive. On a computer with Flutter installed:
+
+  flutter create --platforms=android --org com.madani.ocr .
+
+Then keep the supplied pubspec.yaml and lib/main.dart, and apply these Android settings:
+
+1) android/app/src/main/AndroidManifest.xml: add inside <manifest>:
+   <uses-permission android:name="android.permission.CAMERA" />
+   <uses-permission android:name="android.permission.INTERNET" />
+
+2) Inside <application>, use:
+   android:label="المستخرج الذكي OCR"
+
+3) In android/app/build.gradle (or build.gradle.kts), set minSdk to at least 21.
+
+4) Add local Arabic/English traineddata files as described in assets/tessdata/README.txt.
+
+5) Run:
+   flutter pub get
+   flutter analyze
+   flutter build apk --release
+
+Output:
+   build/app/outputs/flutter-apk/app-release.apk
